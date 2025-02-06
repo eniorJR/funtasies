@@ -10,6 +10,10 @@
     .slider_section .carousel_btn-container {
         top: 130%;
     }
+
+    .circle {
+        height: auto;
+    }
 }
 
 @media (max-width: 992px) {

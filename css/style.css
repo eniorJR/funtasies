@@ -484,6 +484,13 @@ a:focus {
   border-bottom: 1px solid #9be604;
 }
 
+.team_card-container2 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: -200px;
+}
+
 .team_card {
   width: 250px;
   padding: 0 15px;
@@ -496,6 +503,7 @@ a:focus {
 
 .team_card img {
   width: 100%;
+  border-radius: 10px;
 }
 
 .team_detail-box {
@@ -746,10 +754,4 @@ a:focus {
   justify-content: center;
 }
 
-@keyframes spin-text {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(-360deg); }
-}
 
-
-/* end footer section*/
