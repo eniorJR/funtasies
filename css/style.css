@@ -754,4 +754,35 @@ a:focus {
   justify-content: center;
 }
 
+.team-title, .team-description {
+  opacity: 0;
+  transform: translateY(50px);
+  animation: fadeInUp 1s ease-in-out forwards;
+}
 
+.team-description {
+  animation-delay: 0.5s; /* Retard perquè aparegui després del títol */
+}
+
+.team-member {
+  opacity: 0;
+  transform: translateY(50px);
+  animation: fadeInUp 1s ease-in-out forwards;
+}
+
+.team-member:nth-child(1) { animation-delay: 1s; }
+.team-member:nth-child(2) { animation-delay: 1.2s; }
+.team-member:nth-child(3) { animation-delay: 1.4s; }
+/* Continua afegint increments per als altres membres */
+
+
+@keyframes fadeInUp {
+  from {
+      opacity: 0;
+      transform: translateY(50px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}

@@ -16,3 +16,21 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }, 1000);
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const teamSection = document.querySelector(".team-section");
+    const teamElements = document.querySelectorAll(".team-title, .team-description, .team-member");
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.animationPlayState = "running";
+            }
+        });
+    }, { threshold: 0.2 });
+
+    teamElements.forEach(el => {
+        el.style.animationPlayState = "paused";
+        observer.observe(el);
+    });
+});
