@@ -13,6 +13,7 @@
 
     .circle {
         height: auto;
+        width: auto;
     }
 }
 
@@ -23,6 +24,10 @@
 
     .about_card-container {
         flex-wrap: wrap;
+    }
+    .circle {
+        height: auto;
+        width: auto;
     }
 
 }
@@ -36,6 +41,11 @@
     .slider_section .carousel_btn-container {
         top: 112%;
     }
+
+    .circle {
+        height: auto;
+        width: auto;
+    }
 }
 
 @media (max-width: 576px) {
@@ -45,6 +55,11 @@
 
     .info_content {
         margin-top: 150px;
+    }
+
+    .circle {
+        height: auto;
+        width: auto;
     }
 }
 
@@ -59,4 +74,8 @@
         max-width: 1170px;
     }
 
+    .circle {
+        height: auto;
+        width: auto;
+    }
 }
