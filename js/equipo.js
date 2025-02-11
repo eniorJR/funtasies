@@ -7,3 +7,31 @@ document.querySelectorAll('.team-member').forEach(member => {
     });
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+    const members = document.querySelectorAll(".team-member");
+    setTimeout(() => {
+        members.forEach(member => {
+            member.style.opacity = "1";
+            member.style.transform = "translateY(0)";
+        });
+    }, 1000);
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const title = document.querySelector(".team-title");
+    const description = document.querySelector(".team-description");
+    const members = document.querySelectorAll(".team-member");
+
+    // Apareix el títol i la descripció primer
+    title.classList.add("show");
+    description.classList.add("show");
+
+    // Espera que apareguin el títol i la descripció abans de les imatges
+    setTimeout(() => {
+        members.forEach((member, index) => {
+            setTimeout(() => {
+                member.classList.add("show");
+            }, index * 200); // Retard progressiu per cada membre
+        });
+    }, 1000); // Espera 1 segon després del títol
+});
