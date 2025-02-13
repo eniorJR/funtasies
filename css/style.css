@@ -1,3 +1,5 @@
+@import url('https://fonts.cdnfonts.com/css/ds-marker-felt');
+
 body {
   font-family: "Poppins", sans-serif;
   color: #1b161d;
@@ -36,6 +38,14 @@ body {
 
 /*header section*/
 
+.titul{
+  font-family: 'DS Marker Felt', sans-serif;
+  font-size: 80px;
+}
+
+.frase{
+  font-size: 20px;
+}                                          
 
 .hero_area {
   height: 98vh;
