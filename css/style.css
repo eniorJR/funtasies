@@ -844,3 +844,9 @@ a:focus {
   }
 }
 
+.team_social{
+display: flex;
+justify-content: center;
+}
+
+
