@@ -1,9 +1,67 @@
 @import url('https://fonts.cdnfonts.com/css/ds-marker-felt');
 
+:root {
+  --base-color: white;
+  --base-variant: #e8e9ed;
+  --text-color: #111528;
+  --secondary-text: #232738;
+  --primary-color: #3a435d;
+  --accent-color: #c4d70f;
+}
+
+.darkmode {
+  --base-color: #070b1d;
+  --base-variant: #101425;
+  --text-color:   #ffffff;
+  --secondary-text: #a4a5b8;
+  --primary-color: #3a435d;
+  --accent-color: blue;
+}
+
 body {
-  font-family: "Poppins", sans-serif;
-  color: #1b161d;
-  background-color: #ffffff;
+  min-height: 100vh;
+  background-color: var(--base-color);
+  color: var(--text-color);
+}
+
+#theme-switch {
+  height: 50px;
+  width: 50px;
+  padding: 0;
+  border-radius: 50%;
+  background-color: var(--base-variant);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+}
+
+#theme-switch svg {
+  fill: var(--primary-color);
+
+}
+
+#theme-switch svg:last-child {
+  display: none;
+}
+
+.darkmode #theme-switch svg:first-child {
+  display: none;
+}
+
+.darkmode #theme-switch svg:last-child {
+  display: block;
+}
+
+.sign-up {
+  margin-right: 130px;
+}
+
+.theme-switch {
+  margin-right: 100px;
+  margin-top: -10px;
 }
 
 .body-bg {
@@ -425,9 +483,9 @@ a:focus {
 .about_card .about-detail {
   padding: 2px 25px 35px 25px;
   height: 420px;
-  -webkit-box-shadow: -1px 0px 25px 9px rgba(0, 0, 0, 0.09);
-  -moz-box-shadow: -1px 0px 25px 9px rgba(0, 0, 0, 0.09);
-  box-shadow: -1px 0px 25px 9px rgba(0, 0, 0, 0.09);
+  -webkit-box-shadow: -1px 0px 15px 1px #c4d70f;
+  -moz-box-shadow: -1px 0px 15px 1px #c4d70f;
+  box-shadow: -1px 0px 15px 1px #c4d70f;
 }
 
 .about_card .about_img-box {
