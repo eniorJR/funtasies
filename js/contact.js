@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.querySelector("form");
-    
-    form.addEventListener("submit", function (event) {
-        event.preventDefault(); // Evita l'enviament per defecte
 
-        // Obtenir valors dels camps
+    form.addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent default form submission
+
+        // Get field values
         const nomField = form.querySelector("input[type='text']");
         const emailField = form.querySelector("input[type='email']");
         const telefonField = form.querySelectorAll("input[type='text']")[1];
@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let errors = [];
 
-        // Validacions
+        // Validations
         if (nom === "") {
             errors.push("El nom és obligatori.");
             nomField.classList.add("error");
@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
             missatgeField.classList.remove("error");
         }
 
-        // Mostrar errors o enviar formulari
+        // Display errors or submit form
         let errorContainer = document.querySelector(".error-messages");
         if (!errorContainer) {
             errorContainer = document.createElement("div");
@@ -64,6 +64,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function validatePhone(phone) {
-        return /^\d{9,15}$/.test(phone); // Permet números entre 9 i 15 dígits
+        return /^\d{9,15}$/.test(phone); // Allows numbers between 9 and 15 digits
     }
 });
