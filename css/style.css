@@ -791,4 +791,162 @@ display: flex;
 justify-content: center;
 }
 
+/* Fons blanc per a la secció central */
+.intro, .adaptacions, .capacitats, .imatges {
+  background-color: white;
+  padding: 50px 10%;
+  text-align: center;
+}
 
+/* Animació per als títols */
+h1, h2 {
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: fadeInDown 1s ease-out forwards;
+}
+
+
+
+@keyframes fadeInDown {
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+/* Animació per als paràgrafs */
+p {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeIn 1s ease-out forwards;
+  animation-delay: 0.3s;
+}
+
+@keyframes fadeIn {
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+/* Contenidor per a les capacitats */
+.capacitats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.capacitat {
+  background: #f7f7f7;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  flex: 1 1 calc(50% - 40px);
+  min-width: 250px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.capacitat:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Galeria d’imatges */
+.galeria {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  padding: 20px;
+}
+
+.galeria img {
+  width: 200px; /
+  height: 200px; 
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.galeria img:hover {
+  transform: scale(1.1);
+}
+
+img {
+  object-fit: cover;
+  max-width: 100%;
+  border-radius: 10px; 
+}
+
+
+@media (max-width: 768px) {
+  .capacitats {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .capacitat {
+    flex: 1 1 100%;
+  }
+}
+
+/* Secció Qui Som */
+.qui-som {
+  background: linear-gradient(135deg, #f3f3f3 0%, #e0e0e0 100%);
+  padding: 80px 10%;
+  text-align: center;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 1.5s ease-out forwards;
+}
+
+.qui-som h1 {
+  font-size: 3rem;
+  color: #0f3057;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+  letter-spacing: 3px;
+}
+
+.qui-som h2 {
+  font-size: 2.2rem;
+  color: #0277bd;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.qui-som p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #555;
+  max-width: 900px;
+  margin: 0 auto 30px auto;
+}
+
+.qui-som div {
+  margin-bottom: 40px;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.qui-som div:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
