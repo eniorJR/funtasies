@@ -249,3 +249,91 @@ body {
     background-color: #f7f7f7;
     border-bottom: none;
   }
+
+  /* Estilos para los popups */
+.popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 500px;
+  width: 90%;
+  position: relative;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+}
+
+/* Animación de entrada */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Popup Styles */
+.popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.popup-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 50%;
+  text-align: center;
+  position: relative;
+  animation: slideIn 0.3s ease-in-out;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(-50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}

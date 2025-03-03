@@ -1,62 +1,150 @@
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.querySelector("form");
 
-    form.addEventListener("submit", function (event) {
-        event.preventDefault(); // Prevent default form submission
+    if (!form) {
+        console.error("No se encontró ningún formulario en la página.");
+        return;
+    }
 
-        // Get field values
-        const nomField = form.querySelector("input[type='text']");
-        const emailField = form.querySelector("input[type='email']");
-        const telefonField = form.querySelectorAll("input[type='text']")[1];
-        const missatgeField = form.querySelector("textarea");
+    // Referencias a los campos del formulario
+    const nomField = form.querySelector("#nom");
+    const emailField = form.querySelector("#email");
+    const telefonField = form.querySelector("#telefon");
+    const missatgeField = form.querySelector("#missatge");
+    const submitButton = form.querySelector("button[type='submit']");
 
-        const nom = nomField.value.trim();
-        const email = emailField.value.trim();
-        const telefon = telefonField.value.trim();
-        const missatge = missatgeField.value.trim();
+    // Habilitar validación en tiempo real
+    nomField.addEventListener("input", () => validateField(nomField, validateText));
+    emailField.addEventListener("input", () => validateField(emailField, validateEmail));
+    telefonField.addEventListener("input", () => validateField(telefonField, validatePhone));
+    missatgeField.addEventListener("input", () => validateField(missatgeField, validateMessage));
 
-        let errors = [];
-
-        // Validations
-        if (nom === "") {
-            errors.push("El nom és obligatori.");
-            nomField.classList.add("error");
-        } else {
-            nomField.classList.remove("error");
-        }
-        if (email === "" || !validateEmail(email)) {
-            errors.push("El correu electrònic és obligatori i ha de ser vàlid.");
-            emailField.classList.add("error");
-        } else {
-            emailField.classList.remove("error");
-        }
-        if (telefon === "" || !validatePhone(telefon)) {
-            errors.push("El número de telèfon és obligatori i ha de contenir entre 9 i 15 dígits.");
-            telefonField.classList.add("error");
-        } else {
-            telefonField.classList.remove("error");
-        }
-        if (missatge === "" || missatge.length < 10) {
-            errors.push("El missatge és obligatori i ha de tenir almenys 10 caràcters.");
-            missatgeField.classList.add("error");
-        } else {
-            missatgeField.classList.remove("error");
-        }
-
-        // Display errors or submit form
-        let errorContainer = document.querySelector(".error-messages");
-        if (!errorContainer) {
-            errorContainer = document.createElement("div");
-            errorContainer.classList.add("error-messages");
-            form.prepend(errorContainer);
-        }
-        errorContainer.innerHTML = errors.join("<br>");
-
-        if (errors.length === 0) {
-            alert("Formulari enviat correctament!");
-            form.reset();
+    // Limitar el campo de teléfono a 9 dígitos
+    telefonField.addEventListener("input", function () {
+        if (this.value.length > 9) {
+            this.value = this.value.slice(0, 9); // Cortar el valor a 9 caracteres
         }
     });
+
+    // Manejar el envío del formulario
+    form.addEventListener("submit", async function (event) {
+        event.preventDefault(); // Evitar el envío por defecto
+
+        // Validar todos los campos antes de enviar
+        const isNomValid = validateField(nomField, validateText);
+        const isEmailValid = validateField(emailField, validateEmail);
+        const isTelefonValid = validateField(telefonField, validatePhone);
+        const isMissatgeValid = validateField(missatgeField, validateMessage);
+
+        const isFormValid = isNomValid && isEmailValid && isTelefonValid && isMissatgeValid;
+
+        if (isFormValid) {
+            // Deshabilitar el botón de envío para evitar múltiples envíos
+            submitButton.disabled = true;
+            submitButton.textContent = "Enviant...";
+
+            try {
+                // Simular el envío del formulario (puedes reemplazar esto con fetch)
+                const response = await submitForm({
+                    nom: nomField.value.trim(),
+                    email: emailField.value.trim(),
+                    telefon: telefonField.value.trim(),
+                    missatge: missatgeField.value.trim(),
+                });
+
+                // Mostrar mensaje de éxito
+                showMessage("Formulari enviat correctament!", "success");
+                form.reset(); // Reiniciar el formulario
+            } catch (error) {
+                // Mostrar mensaje de error
+                showMessage("Hi ha hagut un error en enviar el formulari. Torna-ho a provar.", "error");
+            } finally {
+                // Restaurar el botón de envío
+                submitButton.disabled = false;
+                submitButton.textContent = "Enviar";
+            }
+        } else {
+            showMessage("Si us plau, corregeix els errors abans d'enviar el formulari.", "error");
+        }
+    });
+
+    /**
+     * Valida un campo del formulario.
+     * @param {HTMLElement} field - Campo a validar.
+     * @param {Function} validator - Función de validación.
+     * @returns {boolean} - True si el campo es válido, false en caso contrario.
+     */
+    function validateField(field, validator) {
+        const errorMessage = field.nextElementSibling;
+        const value = field.value.trim();
+
+        if (validator(value)) {
+            field.classList.remove("error");
+            field.classList.add("success");
+            if (errorMessage) errorMessage.textContent = "";
+            return true;
+        } else {
+            field.classList.remove("success");
+            field.classList.add("error");
+            if (errorMessage) errorMessage.textContent = getErrorMessage(field);
+            return false;
+        }
+    }
+
+    /**
+     * Obtiene el mensaje de error para un campo.
+     * @param {HTMLElement} field - Campo del formulario.
+     * @returns {string} - Mensaje de error.
+     */
+    function getErrorMessage(field) {
+        if (field === nomField) return "El nom és obligatori.";
+        if (field === emailField) return "El correu electrònic és obligatori i ha de ser vàlid.";
+        if (field === telefonField) return "El telèfon és obligatori i ha de contenir exactament 9 dígits.";
+        if (field === missatgeField) return "El missatge és obligatori i ha de tenir almenys 10 caràcters.";
+        return "";
+    }
+
+    /**
+     * Muestra un mensaje en el formulario.
+     * @param {string} message - Mensaje a mostrar.
+     * @param {string} type - Tipo de mensaje (success, error).
+     */
+    function showMessage(message, type) {
+        let messageContainer = document.querySelector(".error-messages");
+
+        if (!messageContainer) {
+            messageContainer = document.createElement("div");
+            messageContainer.classList.add("error-messages");
+            form.prepend(messageContainer);
+        }
+
+        messageContainer.textContent = message;
+        messageContainer.className = `error-messages ${type}`;
+    }
+
+    /**
+     * Simula el envío del formulario (puedes reemplazar esto con fetch).
+     * @param {Object} data - Datos del formulario.
+     * @returns {Promise} - Promesa que simula una respuesta del servidor.
+     */
+    function submitForm(data) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                // Simular una respuesta exitosa o un error
+                const shouldFail = Math.random() < 0.2; // 20% de probabilidad de error
+                if (shouldFail) {
+                    reject(new Error("Error en el servidor"));
+                } else {
+                    resolve({ status: "success", data });
+                }
+            }, 1000); // Simular un retraso de 1 segundo
+        });
+    }
+
+    // Funciones de validación
+    function validateText(text) {
+        return text.length > 0;
+    }
 
     function validateEmail(email) {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -64,6 +152,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function validatePhone(phone) {
-        return /^\d{9,15}$/.test(phone); // Allows numbers between 9 and 15 digits
+        return /^\d{9}$/.test(phone); // Exactamente 9 dígitos
+    }
+
+    function validateMessage(message) {
+        return message.length >= 10;
     }
 });
