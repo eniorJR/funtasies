@@ -47,6 +47,11 @@ body {
   display: none;
 }
 
+.darkmode .popup-content {
+  background-color: rgb(12, 12, 34);
+  color: white;
+}
+
 .darkmode #theme-switch svg:first-child {
   display: none;
 }
