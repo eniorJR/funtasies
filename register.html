@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registre</title>
+    <link rel="stylesheet" href="css/login_styles.css" />
+  </head>
+  <body>
+    <div class="login-container">
+      <h1>Crear Compte</h1>
+      <div id="error-message" class="error-message">
+        Hi ha hagut un error en el registre. Si us plau, torna-ho a provar.
+      </div>
+      <form id="register-form">
+        <div class="input-group">
+          <label for="name">Nom Complet</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            placeholder="El teu nom complet"
+          />
+        </div>
+        <div class="input-group">
+          <label for="email">Correu Electrònic</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            placeholder="el.teu@correu.com"
+          />
+        </div>
+        <div class="input-group">
+          <label for="password">Contrasenya</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            required
+            placeholder="La teva contrasenya"
+          />
+        </div>
+        <div class="input-group">
+          <label for="confirm-password">Confirma la Contrasenya</label>
+          <input
+            type="password"
+            id="confirm-password"
+            name="confirm-password"
+            required
+            placeholder="Confirma la teva contrasenya"
+          />
+        </div>
+        <button type="submit">Registrar-se</button>
+      </form>
+      <div class="login-link">
+        <p>Ja tens un compte? <a href="login.html">Inicia sessió</a></p>
+      </div>
+    </div>
+    <script src="js/register.js"></script>
+  </body>
+</html>
